@@ -17,8 +17,6 @@ export class User {
     @Column('varchar', { length: 105, select: false, nullable: false })
     password:string
 
-    @ManyToOne(() => Role)
-    @JoinColumn({ name: 'roles_id' })
-    role: Role;
-
+    @ManyToOne(type => Role, Role => Role.id)
+    roleId: Role[];
 }

@@ -1,5 +1,6 @@
 import { MaxLength } from "class-validator";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
+import { User } from "src/users/entities/user.entity";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 
 @Entity('roles')
 export class Role {
@@ -9,6 +10,7 @@ export class Role {
     @Column('varchar', { unique: true, nullable: true })
     @MaxLength(50)
     name: string;
-
     
+    @OneToMany(() => User, user => user.roleId)
+    users: User[];
 }

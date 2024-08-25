@@ -1,16 +1,16 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { UsersService } from './users.service';
+import { Controller,  Post, Body, Injectable, Inject } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { IUsersService } from './interfaces';
+import { UsersService } from './users.service';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: IUsersService) {}
+  constructor(
+    @Inject('IUsersService')private readonly usersService: UsersService
+  ){}
 
   @Post()
-  create(@Body() createUser: CreateUserDto) {
-    return this.usersService.create(createUser);
+  create(@Body() createUserDto: CreateUserDto) {
+    return this.usersService.create(createUserDto);
   }
 
   // @Get()
