@@ -13,7 +13,6 @@ export class UsersService{
 
   constructor(
     @InjectRepository(User) private readonly userRepository:Repository<User>,
-    @InjectRepository(Role)  private readonly roleRepository: Repository<Role>
   ){}
 
   async create(createUserDto : CreateUserDto):Promise<User | string>{
@@ -29,14 +28,20 @@ export class UsersService{
         console.log(user)
         return user
       } catch (error) {
-        console.log(error)
+        return `Error creating User ${error}`
         
       }
   };
 
-  // findAll() {
-  //   return `This action returns all users`;
-  // }
+  async findAll() {
+    
+    const users = await this.userRepository.find({
+      relations:[
+        'roleId'
+      ]
+    })
+    return users;
+  }
 
   // findOne(id: number) {
   //   return `This action returns a #${id} user`;

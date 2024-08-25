@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { DataSource } from 'typeorm';
 import CreateRoles from './roles.seed';
+import CreateProducts from './products.seed';
 
 @Injectable()
 export class SeedService {
@@ -9,7 +10,13 @@ export class SeedService {
   async seed(){
     const roleSeeder = new CreateRoles()
     await roleSeeder.run(this.dataSource)
+
+    const productSeeder = new CreateProducts()
+    await productSeeder.run(this.dataSource)
+
   }
+
+  
 
 
 }

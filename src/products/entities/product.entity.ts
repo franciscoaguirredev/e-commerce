@@ -7,11 +7,14 @@ export class Product {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({nullable: false})
   name: string;
 
-  @Column()
+  @Column({nullable: false})
   price: number;
+
+  @Column()
+  description: string;
 
   @ManyToMany(() => Order, order => order.products)
   orders: Order[];

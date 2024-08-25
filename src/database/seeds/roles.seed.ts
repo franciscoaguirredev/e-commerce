@@ -22,7 +22,7 @@ export default class CreateRoles implements Seeder{
                 await roleRepository.save(newRole)
             }
         } 
-        console.log('Roles loaded');
+        console.log('Seed Roles loaded');
     }
     
 }
