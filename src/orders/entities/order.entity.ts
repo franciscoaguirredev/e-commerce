@@ -18,5 +18,5 @@ export class Order {
 
     @ManyToMany(() => Product, product => product.orders)
     @JoinTable()  
-    productsID: Product[];
+    productsIds: Product[];
 }
