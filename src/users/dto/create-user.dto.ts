@@ -9,7 +9,7 @@ export class CreateUserDto {
 
     @IsString()
     @MinLength(6)
-    @MaxLength(105)
+    @MaxLength(255)
     @Matches(/(?:(?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
     message: 'Password must include at least one uppercase letter, one lowercase letter, and one number or special character.'
     })
@@ -19,5 +19,4 @@ export class CreateUserDto {
     @Min(1)
     @Max(2)
     role: number
-
 }

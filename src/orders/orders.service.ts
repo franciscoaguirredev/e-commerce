@@ -24,7 +24,6 @@ export class OrdersService {
 
     const productNames = productsEntities.map(product => product.name).join(', ')
 
-    console.log(productNames)
     const user = await this.userRepository.findOne({ where: { id: userId } });
     const order = new Order();
     order.products = productNames; // Asignar la cadena de productos

@@ -1,5 +1,5 @@
 import { Role } from "src/roles/entities/role.entity";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
+import { BeforeInsert, BeforeUpdate, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
 
 @Entity('users')
 export class User {
@@ -14,9 +14,23 @@ export class User {
     })
     email:string
 
-    @Column('varchar', { length: 105, select: false, nullable: false })
+    @Column('varchar', { length: 255, select: false, nullable: false })
     password:string
 
     @ManyToOne(type => Role, Role => Role.id)
     roleId: Role[];
+
+    @Column({ nullable: true })
+    token?: string;
+
+    @BeforeInsert()
+    checkFieldsBeforeInsert(){
+        this.email = this.email.toLowerCase().trim();
+    }
+
+    @BeforeUpdate()
+    checkFieldsBeforeUpdate(){
+        this.checkFieldsBeforeInsert()
+    }
+
 }
