@@ -28,7 +28,7 @@ export class AuthService {
            const {password, ...userData} = createUserDto
           const user = await this.userRepository.create({
             ...userData,
-            password: bcrypt.hashSync(password, 10)
+            password: bcrypt.hashSync(password, 10) //encriptacion del password
           })
           await this.userRepository.save(user)
           delete user.password
