@@ -10,7 +10,7 @@ export class Role {
     @Column('varchar', { unique: true, nullable: true })
     @MaxLength(50)
     name: string;
-    
-    @OneToMany(() => User, user => user.roleId)
+
+    @OneToMany(() => User, (user) => user.roleId)
     users: User[];
 }
